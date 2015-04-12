@@ -1,13 +1,25 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
+
+    <item android:id="@+id/add_table"
+        android:title="New Time-Table"
+        android:orderInCategory="1"
+        android:showAsAction="never"/>
+
+    <item android:id="@+id/sync"
+        android:title="Sync Time-Table"
+        android:orderInCategory="2"
+        android:showAsAction="never"/>
+
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="1"
+        android:orderInCategory="3"
         android:showAsAction="never"
         android:title="Version"/>
+
     <item android:id="@+id/future_plans" 
         android:title="Future Plans" 
-        android:orderInCategory="2" 
+        android:orderInCategory="4"
         android:showAsAction="never">
         
     </item>
@@ -15,16 +27,16 @@
         android:id="@+id/info" 
         android:showAsAction="never" 
         android:title="Info" 
-        android:orderInCategory="3">
+        android:orderInCategory="5">
         
     </item>
     <item 
         android:id="@+id/about_us" 
         android:showAsAction="never" 
         android:title="About us" 
-        android:orderInCategory="4">
+        android:orderInCategory="6">
         
     </item>
 
 </menu>
-<!-- From: file:/home/ashish/Downloads/RemindUPP1/app/src/main/res/menu/main.xml -->
+<!-- From: file:/Users/anish/anishdev/ash/PlanIT/Downloads/RemindUPP1/app/src/main/res/menu/main.xml -->

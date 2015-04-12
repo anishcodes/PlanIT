@@ -1,148 +1,84 @@
 package com.example.PlanIT;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
 
 public class DBhelper extends SQLiteOpenHelper {
 
-   public static final String DATABASE_NAME = "MyDBName.db";
-   public static  String TABLE_NAME = "tb";
-   public static final String ROW_ID = "id";
-   public static final String PER = "per";
-    public static final String NAME= "name";
+    public static final String DATABASE_NAME = "MyDBName.db";
+    public static final String TABLE_NAME = "timetable";
 
-   private HashMap hp;
-
-   public DBhelper(Context context)
-   {
-      super(context, DATABASE_NAME , null, 1);
-
-   }
-    public static void settablename(String st)
-    {
-        TABLE_NAME=st;
-    }
-    public static String gettablename()
-    {
-        return TABLE_NAME;
+    public DBhelper(Context context) {
+        super(context, DATABASE_NAME, null, 1);
     }
 
-   @Override
-   public void onCreate(SQLiteDatabase db) {
-      // TODO Auto-generated method stub
-      db.execSQL(
-      "create table tablenames ("+ NAME +" text);"
-      );
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+        db.execSQL("create table " + TABLE_NAME + "(" +
+                Constants.ROW_ID + " int, " +
+                Constants.SUBJECT + " text, " +
+                Constants.TIME_TABLE_NAME + " text );");
+    }
 
-   }
-    public void createTable() {
-        SQLiteDatabase db = this.getReadableDatabase();
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i2) {
+
+    }
+
+    public void addTimeTable(String timeTableName) {
+        SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        contentValues.put(NAME, TABLE_NAME);
-        db.insert("tablenames", null, contentValues);
-        db.execSQL(
-                "create table "+ TABLE_NAME +
-                        "("+ ROW_ID+" integer, "+ PER +" text);"
-        );
-
+        // Inserting dummy value here.
+        contentValues.put(Constants.ROW_ID, -1);
+        contentValues.put(Constants.SUBJECT, "");
+        contentValues.put(Constants.TIME_TABLE_NAME, timeTableName);
+        db.insert(TABLE_NAME, null, contentValues);
+        db.close();
     }
 
+    public void insertSubject(int rowId, String subject, String timeTableName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_NAME + " WHERE " + Constants.ROW_ID + " = " + Integer.toString(rowId) + " AND " + Constants.TIME_TABLE_NAME + " = '" + timeTableName + "';");
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Constants.ROW_ID, rowId);
+        contentValues.put(Constants.SUBJECT, subject);
+        contentValues.put(Constants.TIME_TABLE_NAME, timeTableName);
+        db.insert(TABLE_NAME, null, contentValues);
+        db.close();
+    }
 
-   @Override
-   public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-      // TODO Auto-generated method stub
-      db.execSQL("DROP TABLE IF EXISTS contacts");
-      onCreate(db);
-   }
-
-   public boolean insertSubject(int id, String subject)
-   {
-      SQLiteDatabase db = this.getWritableDatabase();
-      ContentValues contentValues = new ContentValues();
-
-      contentValues.put(ROW_ID, id);
-      contentValues.put(PER, subject);
-
-
-      db.insert(TABLE_NAME, null, contentValues);
-      return true;
-   }
-   public Cursor getData(int id){
-      SQLiteDatabase db = this.getReadableDatabase();
-      Cursor res =  db.rawQuery( "select * from contacts where id="+id+"", null );
-      return res;
-   }
-   public int numberOfRows(){
-      SQLiteDatabase db = this.getReadableDatabase();
-      int numRows = (int) DatabaseUtils.queryNumEntries(db, TABLE_NAME);
-      return numRows;
-   }/*
-   public boolean updateContact (Integer id, String name, String phone, String email, String street,String place)
-   {
-      SQLiteDatabase db = this.getWritableDatabase();
-      ContentValues contentValues = new ContentValues();
-      contentValues.put("name", name);
-      contentValues.put("phone", phone);
-      contentValues.put("email", email);
-      contentValues.put("street", street);
-      contentValues.put("place", place);
-      db.update("contacts", contentValues, "id = ? ", new String[] { Integer.toString(id) } );
-      return true;
-   }*/
-
-   public void delete ()
-   {
-      SQLiteDatabase db = this.getWritableDatabase();
-       db.execSQL("drop table " + TABLE_NAME);
-       db.delete("tablenames", NAME+"="+TABLE_NAME, null);
-
-
-
-   }
-   public ArrayList getTableNames()
-   {
-      ArrayList array_list = new ArrayList();
-      //hp = new HashMap();
-      SQLiteDatabase db = this.getReadableDatabase();
-      Cursor res =  db.rawQuery( "select * from tablenames ", null );
-      res.moveToFirst();
-      while(res.isAfterLast() == false){
-      array_list.add(res.getString(res.getColumnIndex(NAME)));
-      res.moveToNext();
-      }
-   return array_list;
-   }
-    public ArrayList getRowId()
-    {
+    public ArrayList getTableNames() {
         ArrayList array_list = new ArrayList();
-        //hp = new HashMap();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from "+TABLE_NAME+" ", null );
+        Cursor res = db.rawQuery("SELECT DISTINCT " + Constants.TIME_TABLE_NAME + " FROM " + TABLE_NAME + ";", null);
         res.moveToFirst();
-        while(res.isAfterLast() == false){
-            array_list.add(res.getString(res.getColumnIndex(ROW_ID)));
+        while (res.isAfterLast() == false) {
+            array_list.add(res.getString(res.getColumnIndex(Constants.TIME_TABLE_NAME)));
             res.moveToNext();
         }
+        res.close();
         return array_list;
     }
-    public ArrayList getPer()
-    {
-        ArrayList array_list = new ArrayList();
-        //hp = new HashMap();
+
+    public ArrayList getItems(String timeTableName) {
+        ArrayList<ContentValues> array_list = new ArrayList();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res =  db.rawQuery( "select * from "+TABLE_NAME+" ", null );
+        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_NAME + " WHERE " + Constants.TIME_TABLE_NAME + " = '" + timeTableName + "' ;", null);
         res.moveToFirst();
-        while(res.isAfterLast() == false){
-            array_list.add(res.getString(res.getColumnIndex(PER)));
+        while (res.isAfterLast() == false) {
+            ContentValues contentValues = new ContentValues();
+            contentValues.put(Constants.ROW_ID, res.getInt(res.getColumnIndex(Constants.ROW_ID)));
+            contentValues.put(Constants.SUBJECT, res.getString(res.getColumnIndex(Constants.SUBJECT)));
+            array_list.add(contentValues);
             res.moveToNext();
         }
+        res.close();
         return array_list;
     }
 }

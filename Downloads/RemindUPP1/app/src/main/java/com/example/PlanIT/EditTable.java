@@ -1,6 +1,7 @@
 package com.example.PlanIT;
 
 import android.app.AlertDialog;
+import android.content.ContentValues;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
@@ -16,46 +17,48 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 public class EditTable extends Activity {
-    public ArrayList rowId;
-    public ArrayList period;
 
-    String text;
-    EditText edt;
-    Button editbtn;
-    static final int RESULT=0;
     DBhelper db;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.nitk_table);
-        db=new DBhelper(EditTable.this);
+    String timeTableName = null;
 
-        Button v;
-        TextView tv;
-        rowId=db.getRowId();
-        period=db.getPer();
-        tv=(TextView)findViewById(R.id.index);
-        tv.setText(DBhelper.gettablename());
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.nitk_table);
 
-        //Toast.makeText(getBaseContext(), val , Toast.LENGTH_LONG).show();
-        int val;
-        for(int i=0;i<rowId.size();i++)
-        {
-            val =Integer.valueOf((String) rowId.get(i));
-            v=(Button)findViewById(val);
-            v.setText((String)period.get(i));
+        db = new DBhelper(EditTable.this);
+
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            this.timeTableName = extras.getString(Constants.TIME_TABLE_NAME);
+            TextView tv = (TextView) findViewById(R.id.index);
+            tv.setText(this.timeTableName);
         }
 
+        refreshView();
+    }
 
-	}
-    public void back(View v)
-    {
+    private void refreshView() {
+        Button v;
+        ArrayList<ContentValues> array_list = db.getItems(this.timeTableName);
+        for (ContentValues cv : array_list) {
+            int rowId = cv.getAsInteger(Constants.ROW_ID);
+            if (rowId > 0) {
+                v = (Button) findViewById(rowId);
+                if (v != null)
+                    v.setText(cv.getAsString(Constants.SUBJECT));
+            }
+        }
+    }
+
+    public void back(View v) {
         finish();
     }
-    public void edit(View v)	{
 
-        editbtn=(Button)v;
+    public void edit(View v) {
+
+        final Button editbtn = (Button) v;
         LayoutInflater layoutInflater = LayoutInflater.from(this);
         View promptView = layoutInflater.inflate(R.layout.prompt_subject, null);
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
@@ -70,15 +73,15 @@ public class EditTable extends Activity {
                 .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // get user input and set it to result
-                        text= input.getText().toString();
+                        String text = input.getText().toString();
                         editbtn.setText(text);
-                        int i=editbtn.getId();
-                        db.insertSubject(i, text);
+                        int i = editbtn.getId();
+                        db.insertSubject(i, text, timeTableName);
                     }
                 })
                 .setNegativeButton("Cancel",
                         new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog,	int id) {
+                            public void onClick(DialogInterface dialog, int id) {
                                 dialog.cancel();
                             }
                         });
@@ -89,35 +92,41 @@ public class EditTable extends Activity {
         alertD.show();
     }
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		// Inflate the menu; this adds items to the action bar if it is present.
-		getMenuInflater().inflate(R.menu.edit_table, menu);
-		return true;
-	}
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item){
-    	super.onOptionsItemSelected(item);
-    	switch(item.getItemId())
-    	{
-    	case R.id.etinfo:
-    		infoItems();
-    		break;
-    	}
-		return true;
-    	
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.edit_table, menu);
+        return true;
     }
-    private void infoItems(){
-    	new Builder(this)
-    	.setTitle("Info")
-    	.setMessage("Used to edit the existing table and manage your weekly schedule.")
-    	.setNeutralButton("OK", new DialogInterface.OnClickListener() {
-			
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				// TODO Auto-generated method stub
-				
-			}
-		}).show();
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        super.onOptionsItemSelected(item);
+        switch (item.getItemId()) {
+            case R.id.etinfo:
+                infoItems();
+                break;
+        }
+        return true;
+
+    }
+
+    private void infoItems() {
+        new Builder(this)
+                .setTitle("Info")
+                .setMessage("Used to edit the existing table and manage your weekly schedule.")
+                .setNeutralButton("OK", new DialogInterface.OnClickListener() {
+
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                    }
+                }).show();
+    }
+
+    @Override
+    protected void onDestroy() {
+        db.close();
+        super.onDestroy();
     }
 }

@@ -40,10 +40,10 @@ public final class R {
         public static final int ic_launcher=0x7f020007;
     }
     public static final class id {
-        public static final int about_us=0x7f0a0047;
-        public static final int action_settings=0x7f0a0044;
-        public static final int add_contacts=0x7f0a003f;
-        public static final int bminfo=0x7f0a0040;
+        public static final int about_us=0x7f0a0046;
+        public static final int action_settings=0x7f0a0043;
+        public static final int add_table=0x7f0a0041;
+        public static final int bminfo=0x7f0a003d;
         public static final int c01=0x7f0a0008;
         public static final int c02=0x7f0a0009;
         public static final int c03=0x7f0a000a;
@@ -59,7 +59,6 @@ public final class R {
         public static final int c15=0x7f0a0015;
         public static final int c16=0x7f0a0016;
         public static final int c18=0x7f0a0018;
-        public static final int c61=0x7f0a003d;
         public static final int ce17=0x7f0a0017;
         public static final int cell21=0x7f0a001a;
         public static final int cell22=0x7f0a001b;
@@ -93,18 +92,18 @@ public final class R {
         public static final int cell56=0x7f0a003a;
         public static final int cell57=0x7f0a003b;
         public static final int cell58=0x7f0a003c;
-        public static final int esinfo=0x7f0a0048;
-        public static final int etinfo=0x7f0a0042;
+        public static final int esinfo=0x7f0a0047;
+        public static final int etinfo=0x7f0a003f;
         public static final int exi=0x7f0a0001;
-        public static final int future_plans=0x7f0a0045;
+        public static final int future_plans=0x7f0a0044;
         public static final int index=0x7f0a0006;
-        public static final int info=0x7f0a0046;
-        public static final int labsinfo=0x7f0a0043;
+        public static final int info=0x7f0a0045;
+        public static final int labsinfo=0x7f0a0040;
         public static final int layout_root=0x7f0a0003;
         public static final int listView1=0x7f0a0000;
-        public static final int nitk_savebtn=0x7f0a003e;
         public static final int nt=0x7f0a0002;
-        public static final int scinfo=0x7f0a0041;
+        public static final int scinfo=0x7f0a003e;
+        public static final int sync=0x7f0a0042;
         public static final int tableRow0=0x7f0a0007;
         public static final int tableRow1=0x7f0a0010;
         public static final int tableRow2=0x7f0a0019;
@@ -112,7 +111,7 @@ public final class R {
         public static final int tableRow4=0x7f0a002b;
         public static final int tableRow5=0x7f0a0034;
         public static final int textView=0x7f0a0004;
-        public static final int theoryinfo=0x7f0a0049;
+        public static final int theoryinfo=0x7f0a0048;
         public static final int userInput=0x7f0a0005;
     }
     public static final class layout {
