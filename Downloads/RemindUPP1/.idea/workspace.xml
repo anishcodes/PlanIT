@@ -49,26 +49,14 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.93167704" vertical-offset="0" max-vertical-offset="4095">
-              <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+            <state vertical-scroll-proportion="0.561017" vertical-offset="3164" max-vertical-offset="4380">
+              <caret line="256" column="17" selection-start-line="256" selection-start-column="17" selection-end-line="256" selection-end-column="17" />
               <folding>
-                <element signature="e#4157#4383#0" expanded="true" />
-                <element signature="e#4356#4357#0" expanded="true" />
-                <element signature="e#9165#10119#0" expanded="true" />
-                <element signature="e#10112#10113#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
-              <caret line="14" column="34" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
-              <folding>
-                <element signature="e#555#573#0" expanded="true" />
-                <element signature="e#719#737#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#4211#4437#0" expanded="true" />
+                <element signature="e#4410#4411#0" expanded="true" />
+                <element signature="e#9593#11138#0" expanded="true" />
+                <element signature="e#11131#11132#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -77,8 +65,8 @@
       <file leaf-file-name="BluetoothService.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/BluetoothService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.2307692" vertical-offset="4442" max-vertical-offset="7890">
-              <caret line="300" column="0" selection-start-line="300" selection-start-column="0" selection-end-line="300" selection-end-column="0" />
+            <state vertical-scroll-proportion="-6.576923" vertical-offset="7029" max-vertical-offset="7890">
+              <caret line="480" column="21" selection-start-line="478" selection-start-column="20" selection-end-line="480" selection-end-column="21" />
               <folding>
                 <element signature="e#0#18266#0" expanded="true" />
                 <element signature="imports" expanded="true" />
@@ -93,7 +81,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/DBhelper.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1305">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="27" />
+              <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -115,7 +103,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+              <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -816,9 +804,9 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/EditTable.java" />
         <option value="$PROJECT_DIR$/app/build.gradle" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/BluetoothChatService.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/BluetoothService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/Constants.java" />
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/BluetoothService.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/MainActivity.java" />
       </list>
     </option>
@@ -1142,7 +1130,7 @@
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="10" side_tool="true" content_ui="tabs" />
       <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="true" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32876712" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.65296805" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.65296805" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -1240,10 +1228,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="3102" max-vertical-offset="4884">
           <caret line="141" column="0" selection-start-line="141" selection-start-column="0" selection-end-line="141" selection-end-column="0" />
           <folding>
-            <element signature="e#4157#4383#0" expanded="true" />
-            <element signature="e#4356#4357#0" expanded="true" />
-            <element signature="e#9165#10119#0" expanded="true" />
-            <element signature="e#10112#10113#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#4211#4437#0" expanded="true" />
+            <element signature="e#4410#4411#0" expanded="true" />
+            <element signature="e#9593#11138#0" expanded="true" />
+            <element signature="e#11131#11132#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1346,10 +1335,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="340" max-vertical-offset="2975">
           <caret line="41" column="17" selection-start-line="41" selection-start-column="17" selection-end-line="41" selection-end-column="17" />
           <folding>
-            <element signature="e#4157#4383#0" expanded="true" />
-            <element signature="e#4356#4357#0" expanded="true" />
-            <element signature="e#9165#10119#0" expanded="true" />
-            <element signature="e#10112#10113#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#4211#4437#0" expanded="true" />
+            <element signature="e#4410#4411#0" expanded="true" />
+            <element signature="e#9593#11138#0" expanded="true" />
+            <element signature="e#11131#11132#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1428,10 +1418,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="544" max-vertical-offset="2788">
           <caret line="32" column="21" selection-start-line="32" selection-start-column="21" selection-end-line="32" selection-end-column="21" />
           <folding>
-            <element signature="e#4157#4383#0" expanded="true" />
-            <element signature="e#4356#4357#0" expanded="true" />
-            <element signature="e#9165#10119#0" expanded="true" />
-            <element signature="e#10112#10113#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#4211#4437#0" expanded="true" />
+            <element signature="e#4410#4411#0" expanded="true" />
+            <element signature="e#9593#11138#0" expanded="true" />
+            <element signature="e#11131#11132#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1491,10 +1482,11 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="833" max-vertical-offset="2788">
           <caret line="49" column="37" selection-start-line="49" selection-start-column="37" selection-end-line="49" selection-end-column="37" />
           <folding>
-            <element signature="e#4157#4383#0" expanded="true" />
-            <element signature="e#4356#4357#0" expanded="true" />
-            <element signature="e#9165#10119#0" expanded="true" />
-            <element signature="e#10112#10113#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#4211#4437#0" expanded="true" />
+            <element signature="e#4410#4411#0" expanded="true" />
+            <element signature="e#9593#11138#0" expanded="true" />
+            <element signature="e#11131#11132#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1760,16 +1752,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/DBhelper.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1305">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="27" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/build.gradle">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.1986755" vertical-offset="0" max-vertical-offset="604">
@@ -1802,6 +1784,27 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.38155803" vertical-offset="0" max-vertical-offset="629">
+          <caret line="16" column="40" selection-start-line="16" selection-start-column="40" selection-end-line="16" selection-end-column="40" />
+          <folding>
+            <element signature="e#555#573#0" expanded="true" />
+            <element signature="e#719#737#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/DBhelper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1305">
+          <caret line="19" column="13" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="jar:///Applications/adt/adt-bundle-mac-x86_64-20140702/sdk/platforms/android-17/android.jar!/android/os/Handler.class">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.33279222" vertical-offset="455" max-vertical-offset="1245">
@@ -1813,15 +1816,15 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="375">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
+          <caret line="8" column="0" selection-start-line="8" selection-start-column="0" selection-end-line="8" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/BluetoothService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.2307692" vertical-offset="4442" max-vertical-offset="7890">
-          <caret line="300" column="0" selection-start-line="300" selection-start-column="0" selection-end-line="300" selection-end-column="0" />
+        <state vertical-scroll-proportion="-6.576923" vertical-offset="7029" max-vertical-offset="7890">
+          <caret line="480" column="21" selection-start-line="478" selection-start-column="20" selection-end-line="480" selection-end-column="21" />
           <folding>
             <element signature="e#0#18266#0" expanded="true" />
             <element signature="imports" expanded="true" />
@@ -1831,26 +1834,16 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="600">
-          <caret line="14" column="34" selection-start-line="14" selection-start-column="34" selection-end-line="14" selection-end-column="34" />
-          <folding>
-            <element signature="e#555#573#0" expanded="true" />
-            <element signature="e#719#737#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.93167704" vertical-offset="0" max-vertical-offset="4095">
-          <caret line="10" column="30" selection-start-line="10" selection-start-column="30" selection-end-line="10" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.561017" vertical-offset="3164" max-vertical-offset="4380">
+          <caret line="256" column="17" selection-start-line="256" selection-start-column="17" selection-end-line="256" selection-end-column="17" />
           <folding>
-            <element signature="e#4157#4383#0" expanded="true" />
-            <element signature="e#4356#4357#0" expanded="true" />
-            <element signature="e#9165#10119#0" expanded="true" />
-            <element signature="e#10112#10113#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#4211#4437#0" expanded="true" />
+            <element signature="e#4410#4411#0" expanded="true" />
+            <element signature="e#9593#11138#0" expanded="true" />
+            <element signature="e#11131#11132#0" expanded="true" />
           </folding>
         </state>
       </provider>

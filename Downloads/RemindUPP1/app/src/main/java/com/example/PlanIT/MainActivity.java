@@ -35,6 +35,8 @@ public class MainActivity extends Activity {
 
     private BluetoothService bluetoothService;
 
+    private String messageToBeSentFromClient = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -235,8 +237,13 @@ public class MainActivity extends Activity {
                         if (this.bluetoothService == null)
                             this.bluetoothService = new BluetoothService(this, mHandler);
                         // Connect to server :
-                        this.bluetoothService.connect(device, true);
-                        sendMessageViaBluetooth("Hi from client!");
+                        if (this.bluetoothService.getState() == BluetoothService.STATE_CONNECTED)
+                            sendMessageViaBluetooth("Hi from client!");
+                        else {
+                            this.bluetoothService.connect(device, true);
+                            // Device not connected yet. So, save the message and sent it when we get a CONNECTED callback in mHandler.
+                            messageToBeSentFromClient = "Hi from client!";
+                        }
                         break;
                     }
                 } else {
@@ -270,9 +277,21 @@ public class MainActivity extends Activity {
         public void handleMessage(Message msg) {
 
             switch (msg.what) {
+                case Constants.MESSAGE_STATE_CHANGE:
+                    switch (msg.arg1) {
+                        case BluetoothService.STATE_CONNECTED:
+                            if (messageToBeSentFromClient != null) {
+                                sendMessageViaBluetooth(messageToBeSentFromClient);
+                                messageToBeSentFromClient = null;
+                            }
+                    }
+                    break;
                 case Constants.MESSAGE_READ:
                     byte[] readBuf = (byte[]) msg.obj;
                     String readMessage = new String(readBuf, 0, msg.arg1);
+                    if (Constants.IS_SERVER) {
+                        sendMessageViaBluetooth("Hi from server!");
+                    }
                     Toast.makeText(MainActivity.this, "Connected to "
                             + readMessage, Toast.LENGTH_SHORT).show();
                     break;
