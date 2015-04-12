@@ -2,6 +2,8 @@ package com.example.PlanIT;
 
 
 import android.app.AlertDialog;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog.Builder;
@@ -19,12 +21,19 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import android.os.Message;
+
+import android.os.Handler;
+
 import java.util.ArrayList;
+import java.util.Set;
 
 public class MainActivity extends Activity {
 
     public DBhelper mydb;
     private ListView obj;
+
+    private BluetoothService bluetoothService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +53,22 @@ public class MainActivity extends Activity {
         });
 
         this.refreshView();
+
+        if (Constants.IS_SERVER) {
+            this.setTitle("PlanIT (Server)");
+            BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+            if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
+                Toast.makeText(getApplicationContext(), "Bluetooth is OFF. IMP : Switch on bluetooth and restart the app!!",
+                        Toast.LENGTH_LONG).show();
+            } else {
+                this.bluetoothService = new BluetoothService(this, mHandler);
+                // Start listening for incoming connections.
+                this.bluetoothService.start();
+            }
+        } else {
+            this.setTitle("PlanIT (Client)");
+        }
+
     }
 
     private void refreshView() {
@@ -138,15 +163,6 @@ public class MainActivity extends Activity {
 
     }
 
-    private void syncTimeTableWithServer() {
-        if (Constants.IS_SERVER) {
-            Toast.makeText(getApplicationContext(), "This is server. Try this on client.",
-                    Toast.LENGTH_LONG).show();
-        } else {
-
-        }
-    }
-
     private void versionItems() {
         new Builder(this)
                 .setTitle("Version")
@@ -189,9 +205,86 @@ public class MainActivity extends Activity {
                 }).show();
     }
 
+
     @Override
     protected void onDestroy() {
         mydb.close();
         super.onDestroy();
     }
+
+    // BLUETOOTH FUNCTIONS:
+
+    private void syncTimeTableWithServer() {
+        if (Constants.IS_SERVER) {
+            Toast.makeText(getApplicationContext(), "This is server. Try this on client.",
+                    Toast.LENGTH_LONG).show();
+        } else {
+
+            BluetoothAdapter mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+            if (mBluetoothAdapter == null || !mBluetoothAdapter.isEnabled()) {
+                Toast.makeText(getApplicationContext(), "Bluetooth is OFF. IMP : Switch on bluetooth and restart the app!!",
+                        Toast.LENGTH_LONG).show();
+            } else {
+                // Get a set of currently paired devices
+                Set<BluetoothDevice> pairedDevices = mBluetoothAdapter.getBondedDevices();
+
+                // If there are paired devices, add each one to the ArrayAdapter
+                if (pairedDevices.size() > 0) {
+
+                    for (BluetoothDevice device : pairedDevices) {
+                        if (this.bluetoothService == null)
+                            this.bluetoothService = new BluetoothService(this, mHandler);
+                        // Connect to server :
+                        this.bluetoothService.connect(device, true);
+                        sendMessageViaBluetooth("Hi from client!");
+                        break;
+                    }
+                } else {
+                    Toast.makeText(getApplicationContext(), "No paired devices found!",
+                            Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
+
+    private void sendMessageViaBluetooth(String message) {
+
+        if (this.bluetoothService != null) {
+            // Check that we're actually connected before trying anything
+            if (bluetoothService.getState() != BluetoothService.STATE_CONNECTED) {
+                Toast.makeText(this, "Remote device is not connected!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            // Check that there's actually something to send
+            if (message.length() > 0) {
+                // Get the message bytes and tell the BluetoothChatService to write
+                byte[] send = message.getBytes();
+                bluetoothService.write(send);
+            }
+        }
+    }
+
+    private final Handler mHandler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+
+            switch (msg.what) {
+                case Constants.MESSAGE_READ:
+                    byte[] readBuf = (byte[]) msg.obj;
+                    String readMessage = new String(readBuf, 0, msg.arg1);
+                    Toast.makeText(MainActivity.this, "Connected to "
+                            + readMessage, Toast.LENGTH_SHORT).show();
+                    break;
+                case Constants.MESSAGE_DEVICE_NAME:
+                    // save the connected device's name
+                    String mConnectedDeviceName = msg.getData().getString(Constants.DEVICE_NAME);
+                    if (null != MainActivity.this) {
+                        Toast.makeText(MainActivity.this, "Connected to "
+                                + mConnectedDeviceName, Toast.LENGTH_SHORT).show();
+                    }
+                    break;
+            }
+        }
+    };
 }
