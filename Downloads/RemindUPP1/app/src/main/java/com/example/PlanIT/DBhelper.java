@@ -95,8 +95,8 @@ public class DBhelper extends SQLiteOpenHelper {
             try {
                 JSONObject jo = new JSONObject();
                 jo.put(Constants.ROW_ID, res.getInt(res.getColumnIndex(Constants.ROW_ID)));
-                jo.put(Constants.SUBJECT, res.getInt(res.getColumnIndex(Constants.SUBJECT)));
-                jo.put(Constants.TIME_TABLE_NAME, res.getInt(res.getColumnIndex(Constants.TIME_TABLE_NAME)));
+                jo.put(Constants.SUBJECT, res.getString(res.getColumnIndex(Constants.SUBJECT)));
+                jo.put(Constants.TIME_TABLE_NAME, res.getString(res.getColumnIndex(Constants.TIME_TABLE_NAME)));
                 ja.put(jo);
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -116,7 +116,7 @@ public class DBhelper extends SQLiteOpenHelper {
     public void insertDataUsingJsonString(String jsonString) {
         SQLiteDatabase db = this.getWritableDatabase();
         // First delete all values.
-        db.execSQL("DELETE FROM " + TABLE_NAME + "';");
+        db.execSQL("DELETE FROM " + TABLE_NAME + ";");
         // Now add values.
         try {
             JSONObject rootJO = new JSONObject(jsonString);
