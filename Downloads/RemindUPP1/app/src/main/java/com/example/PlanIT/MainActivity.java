@@ -238,11 +238,11 @@ public class MainActivity extends Activity {
                             this.bluetoothService = new BluetoothService(this, mHandler);
                         // Connect to server :
                         if (this.bluetoothService.getState() == BluetoothService.STATE_CONNECTED)
-                            sendMessageViaBluetooth("Hi from client!");
+                            sendMessageViaBluetooth(Constants.CMD_FETCH_DATA_FROM_SERVER);
                         else {
                             this.bluetoothService.connect(device, true);
                             // Device not connected yet. So, save the message and sent it when we get a CONNECTED callback in mHandler.
-                            messageToBeSentFromClient = "Hi from client!";
+                            messageToBeSentFromClient = Constants.CMD_FETCH_DATA_FROM_SERVER;
                         }
                         break;
                     }
@@ -290,10 +290,16 @@ public class MainActivity extends Activity {
                     byte[] readBuf = (byte[]) msg.obj;
                     String readMessage = new String(readBuf, 0, msg.arg1);
                     if (Constants.IS_SERVER) {
-                        sendMessageViaBluetooth("Hi from server!");
+                        Toast.makeText(MainActivity.this, "RECEIVED FROM CLIENT : "
+                                + readMessage, Toast.LENGTH_SHORT).show();
+                    } else {
+                        // This is client. Saving data from server.
+                        DBhelper dBhelper = new DBhelper(MainActivity.this);
+                        dBhelper.insertDataUsingJsonString(readMessage);
+                        refreshView();
+                        Toast.makeText(MainActivity.this, "RECEIVED FROM SERVER : "
+                                + readMessage, Toast.LENGTH_SHORT).show();
                     }
-                    Toast.makeText(MainActivity.this, "Connected to "
-                            + readMessage, Toast.LENGTH_SHORT).show();
                     break;
                 case Constants.MESSAGE_DEVICE_NAME:
                     // save the connected device's name

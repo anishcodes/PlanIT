@@ -6,6 +6,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 
 public class DBhelper extends SQLiteOpenHelper {
@@ -80,5 +84,55 @@ public class DBhelper extends SQLiteOpenHelper {
         }
         res.close();
         return array_list;
+    }
+
+    public String getJsonStringForAllData() {
+        JSONArray ja = new JSONArray();
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor res = db.rawQuery("SELECT * FROM " + TABLE_NAME + ";", null);
+        res.moveToFirst();
+        while (res.isAfterLast() == false) {
+            try {
+                JSONObject jo = new JSONObject();
+                jo.put(Constants.ROW_ID, res.getInt(res.getColumnIndex(Constants.ROW_ID)));
+                jo.put(Constants.SUBJECT, res.getInt(res.getColumnIndex(Constants.SUBJECT)));
+                jo.put(Constants.TIME_TABLE_NAME, res.getInt(res.getColumnIndex(Constants.TIME_TABLE_NAME)));
+                ja.put(jo);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            res.moveToNext();
+        }
+        JSONObject rootJO = new JSONObject();
+        try {
+            rootJO.put("CONTENT", ja);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        res.close();
+        return rootJO.toString();
+    }
+
+    public void insertDataUsingJsonString(String jsonString) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        // First delete all values.
+        db.execSQL("DELETE FROM " + TABLE_NAME + "';");
+        // Now add values.
+        try {
+            JSONObject rootJO = new JSONObject(jsonString);
+            JSONArray ja = rootJO.getJSONArray("CONTENT");
+
+            for (int i = 0 ; i < ja.length(); i++) {
+                JSONObject jo = ja.getJSONObject(i);
+                ContentValues contentValues = new ContentValues();
+                contentValues.put(Constants.ROW_ID, jo.getInt(Constants.ROW_ID));
+                contentValues.put(Constants.SUBJECT, jo.getString(Constants.SUBJECT));
+                contentValues.put(Constants.TIME_TABLE_NAME, jo.getString(Constants.TIME_TABLE_NAME));
+                db.insert(TABLE_NAME, null, contentValues);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        db.close();
     }
 }
