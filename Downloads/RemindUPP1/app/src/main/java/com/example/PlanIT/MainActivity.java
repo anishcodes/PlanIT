@@ -286,8 +286,7 @@ public class MainActivity extends Activity {
                     }
                     break;
                 case Constants.MESSAGE_READ:
-                    byte[] readBuf = (byte[]) msg.obj;
-                    String readMessage = new String(readBuf, 0, msg.arg1);
+                    String readMessage = (String) msg.obj;
                     if (Constants.IS_SERVER) {
                         Toast.makeText(MainActivity.this, "RECEIVED FROM CLIENT : "
                                 + readMessage, Toast.LENGTH_SHORT).show();

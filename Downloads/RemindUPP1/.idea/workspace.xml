@@ -49,8 +49,8 @@
       <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="2838" max-vertical-offset="3975">
-              <caret line="259" column="59" selection-start-line="259" selection-start-column="59" selection-end-line="259" selection-end-column="59" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="3288" max-vertical-offset="3960">
+              <caret line="301" column="50" selection-start-line="301" selection-start-column="31" selection-end-line="301" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -59,10 +59,10 @@
       <file leaf-file-name="BluetoothService.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/BluetoothService.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.12935324" vertical-offset="6837" max-vertical-offset="7710">
-              <caret line="476" column="38" selection-start-line="476" selection-start-column="28" selection-end-line="476" selection-end-column="38" />
+            <state vertical-scroll-proportion="0.33333334" vertical-offset="2589" max-vertical-offset="7710">
+              <caret line="201" column="74" selection-start-line="201" selection-start-column="55" selection-end-line="201" selection-end-column="74" />
               <folding>
-                <element signature="e#0#18531#0" expanded="true" />
+                <element signature="e#0#18616#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -82,7 +82,7 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/Constants.java">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
-              <caret line="21" column="44" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="44" />
+              <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -793,8 +793,8 @@
         <option value="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/DBhelper.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/Constants.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/MainActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/BluetoothService.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/MainActivity.java" />
       </list>
     </option>
   </component>
@@ -2247,25 +2247,25 @@
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
-          <caret line="21" column="44" selection-start-line="21" selection-start-column="31" selection-end-line="21" selection-end-column="44" />
+          <caret line="21" column="49" selection-start-line="21" selection-start-column="49" selection-end-line="21" selection-end-column="49" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/MainActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="2838" max-vertical-offset="3975">
-          <caret line="259" column="59" selection-start-line="259" selection-start-column="59" selection-end-line="259" selection-end-column="59" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="3288" max-vertical-offset="3960">
+          <caret line="301" column="50" selection-start-line="301" selection-start-column="31" selection-end-line="301" selection-end-column="50" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/example/PlanIT/BluetoothService.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.12935324" vertical-offset="6837" max-vertical-offset="7710">
-          <caret line="476" column="38" selection-start-line="476" selection-start-column="28" selection-end-line="476" selection-end-column="38" />
+        <state vertical-scroll-proportion="0.33333334" vertical-offset="2589" max-vertical-offset="7710">
+          <caret line="201" column="74" selection-start-line="201" selection-start-column="55" selection-end-line="201" selection-end-column="74" />
           <folding>
-            <element signature="e#0#18531#0" expanded="true" />
+            <element signature="e#0#18616#0" expanded="true" />
           </folding>
         </state>
       </provider>

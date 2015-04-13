@@ -19,5 +19,5 @@ public class Constants {
 
     public static final String CMD_FETCH_DATA_FROM_SERVER = "FETCH_DATA";
 
-    public static final String END_OF_STRING = "==END==";
+    public static final String END_OF_STRING = "*=!=END=!=*";
 }

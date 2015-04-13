@@ -484,6 +484,7 @@ public class BluetoothService {
                         readString = readString + readMessage;
 
                     if (readString.endsWith(Constants.END_OF_STRING)) {
+                        readString = readString.replace(Constants.END_OF_STRING, "");
                         // Send the obtained bytes to the UI Activity
                         mHandler.obtainMessage(Constants.MESSAGE_READ, -1, -1, readString)
                                 .sendToTarget();
@@ -503,7 +504,6 @@ public class BluetoothService {
             data = data + Constants.END_OF_STRING;
             try {
                 mmOutStream.write(data.getBytes());
-
                 // Share the sent message back to the UI Activity
                 mHandler.obtainMessage(Constants.MESSAGE_WRITE, -1, -1, data)
                         .sendToTarget();
