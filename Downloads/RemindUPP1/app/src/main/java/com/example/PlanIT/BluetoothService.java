@@ -236,13 +236,8 @@ public class BluetoothService {
         setState(STATE_NONE);
     }
 
-    /**
-     * Write to the ConnectedThread in an unsynchronized manner
-     *
-     * @param out The bytes to write
-     * @see ConnectedThread#write(byte[])
-     */
-    public void write(byte[] out) {
+
+    public void write(String data) {
         // Create temporary object
         ConnectedThread r;
         // Synchronize a copy of the ConnectedThread
@@ -251,7 +246,7 @@ public class BluetoothService {
             r = mConnectedThread;
         }
         // Perform the write unsynchronized
-        r.write(out);
+        r.write(data);
     }
 
     /**
@@ -474,6 +469,7 @@ public class BluetoothService {
             byte[] buffer = new byte[1024];
             int bytes;
 
+            String readString = "";
             // Keep listening to the InputStream while connected
             while (true) {
                 try {
@@ -481,11 +477,18 @@ public class BluetoothService {
                     bytes = mmInStream.read(buffer);
                     if (Constants.IS_SERVER) {
                         DBhelper dBhelper = new DBhelper(context);
-                        this.write(dBhelper.getJsonStringForAllData().getBytes());
+                        this.write(dBhelper.getJsonStringForAllData());
                     }
-                    // Send the obtained bytes to the UI Activity
-                    mHandler.obtainMessage(Constants.MESSAGE_READ, bytes, -1, buffer)
-                            .sendToTarget();
+                    String readMessage = new String(buffer, 0, bytes);
+                    if (readMessage != null)
+                        readString = readString + readMessage;
+
+                    if (readString.endsWith(Constants.END_OF_STRING)) {
+                        // Send the obtained bytes to the UI Activity
+                        mHandler.obtainMessage(Constants.MESSAGE_READ, -1, -1, readString)
+                                .sendToTarget();
+                        readString = "";
+                    }
                 } catch (IOException e) {
                     Log.e(TAG, "disconnected", e);
                     connectionLost();
@@ -496,17 +499,13 @@ public class BluetoothService {
             }
         }
 
-        /**
-         * Write to the connected OutStream.
-         *
-         * @param buffer The bytes to write
-         */
-        public void write(byte[] buffer) {
+        public void write(String data) {
+            data = data + Constants.END_OF_STRING;
             try {
-                mmOutStream.write(buffer);
+                mmOutStream.write(data.getBytes());
 
                 // Share the sent message back to the UI Activity
-                mHandler.obtainMessage(Constants.MESSAGE_WRITE, -1, -1, buffer)
+                mHandler.obtainMessage(Constants.MESSAGE_WRITE, -1, -1, data)
                         .sendToTarget();
             } catch (IOException e) {
                 Log.e(TAG, "Exception during write", e);

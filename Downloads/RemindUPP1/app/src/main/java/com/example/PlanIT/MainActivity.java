@@ -266,8 +266,7 @@ public class MainActivity extends Activity {
             // Check that there's actually something to send
             if (message.length() > 0) {
                 // Get the message bytes and tell the BluetoothChatService to write
-                byte[] send = message.getBytes();
-                bluetoothService.write(send);
+                bluetoothService.write(message);
             }
         }
     }
